@@ -53,16 +53,9 @@
 	},
 	"roleName": {
 	  "type": "string",
-	  "defaultValue": "Custom Role - VM Scanners User",
+	  "defaultValue": "Custom Role - VM Scanner Operator",
 	  "metadata": {
 		"description": "Friendly name of the role definition"
-	  }
-	},
-	"roleDescription": {
-	  "type": "string",
-	  "defaultValue": "Subscription Level Deployment of a Role Definition",
-	  "metadata": {
-		"description": "Detailed description of the role definition"
 	  }
 	},
 	"exclusionTags": {
@@ -83,7 +76,7 @@
 	  "name": "[variables('roleDefName')]",
 	  "properties": {
 		"roleName": "[parameters('roleName')]",
-		"description": "[parameters('roleDescription')]",
+		"description": "Used by Microsoft Defender for Cloud to scan VMs",
 		"type": "customRole",
 		"permissions": [
 		  {
@@ -117,7 +110,7 @@
 		  "resources": [
 			{
 			  "type": "Microsoft.Security/vmScanners",
-			  "location": "westeurope",
+			  "location": "[resourceGroup().location]",
 			  "apiVersion": "2022-03-01-preview",
 			  "name": "default",
 			  "properties": {
