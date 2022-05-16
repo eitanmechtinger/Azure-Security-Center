@@ -10,7 +10,7 @@
     },
     "roleNameGuid": {
       "type": "string",
-      "defaultValue": "[newGuid()]",
+      "defaultValue": "bd9ea6db-713e-43d0-a2ee-7ff61158181a",
       "metadata": {
         "description": "A new GUID used to identify the role assignment"
       }
@@ -93,6 +93,9 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2020-10-01",
       "name": "vmScannersResourceRgTemplate",
+      "dependsOn": [
+        "[resourceId('Microsoft.Authorization/roleAssignments', parameters('roleNameGuid'))]"
+      ],
       "properties": {
         "mode": "Incremental",
         "template": {
